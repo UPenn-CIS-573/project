@@ -39,7 +39,7 @@ public class DataManager {
 				JSONObject data = (JSONObject)json.get("data");
 				String fundId = (String)data.get("_id");
 				String name = (String)data.get("name");
-				String description = (String)data.get("descrption");
+				String description = (String)data.get("description");
 				Organization org = new Organization(fundId, name, description);
 
 				JSONArray funds = (JSONArray)data.get("funds");
@@ -49,7 +49,7 @@ public class DataManager {
 					fundId = (String)fund.get("_id");
 					name = (String)fund.get("name");
 					description = (String)fund.get("description");
-					long target = (Long)fund.get("target");
+					long target = Long.parseLong((String)fund.get("target"));
 
 					Fund newFund = new Fund(fundId, name, description, target);
 
@@ -60,7 +60,7 @@ public class DataManager {
 						JSONObject donation = (JSONObject) it2.next();
 						String contributorId = (String)donation.get("contributor");
 						String contributorName = this.getContributorName(contributorId);
-						long amount = (Long)donation.get("amount");
+						long amount = Long.parseLong((String)donation.get("amount"));
 						String date = (String)donation.get("date");
 						donationList.add(new Donation(fundId, contributorName, amount, date));
 					}
