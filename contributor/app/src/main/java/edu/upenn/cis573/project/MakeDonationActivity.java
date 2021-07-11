@@ -147,10 +147,12 @@ public class MakeDonationActivity extends AppCompatActivity {
 
         if (success) {
             Toast.makeText(this, "Thank you for your donation!", Toast.LENGTH_LONG).show();
+
             String dateNow = new Date().toString();
             DateParser dateParserObj = new DateParser("EEE MMM dd HH:mm:ss zzz yyyy", "MM/dd/yyyy");
             String dateInNewFormat = dateParserObj.convertDateToNewFormat(dateNow);
             contributor.getDonations().add(new Donation(selectedFund.getName(), contributor.getName(), Long.parseLong(amount), dateInNewFormat));
+            contributor.setTotalAmountOfDonations(contributor.getTotalAmountOfDonations() + Long.parseLong(amount));
 
             new AsyncTask<String, String, String>() {
 
