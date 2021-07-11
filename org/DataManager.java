@@ -49,7 +49,7 @@ public class DataManager {
 					fundId = (String)fund.get("_id");
 					name = (String)fund.get("name");
 					description = (String)fund.get("description");
-					long target = Long.parseLong((String)fund.get("target"));
+					long target = Long.parseLong(String.valueOf(fund.get("target")));
 
 					Fund newFund = new Fund(fundId, name, description, target);
 

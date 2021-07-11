@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -30,12 +31,24 @@ public class UserInterface {
 				System.out.println("Enter the fund number to see more information.");
 			}
 			System.out.println("Enter 0 to create a new fund");
-			int option = in.nextInt();
-			in.nextLine();
+			
+			// Option should be an integer
+			int option = -1;
+			
+			try {
+				option = Integer.parseInt(in.nextLine());
+			} catch (InputMismatchException e) {
+				System.out.println("Please enter a valid option.");
+				continue;
+			} catch (Exception e) {
+				System.out.println("Please enter a valid option.");
+				continue;
+			}
+			
 			if (option == 0) {
 				createFund(); 
 			}
-			else {
+			else if (option != -1){
 				displayFund(option);
 			}
 		}			
@@ -51,8 +64,14 @@ public class UserInterface {
 		String description = in.nextLine().trim();
 		
 		System.out.print("Enter the fund target: ");
-		long target = in.nextInt();
-		in.nextLine();
+		long target;
+		
+		try {
+			target = Long.parseLong(in.nextLine());
+		} catch (Exception e) {
+			System.out.print("Please enter a valid fund target.");
+			return;
+		}
 
 		Fund fund = dataManager.createFund(org.getId(), name, description, target);
 		org.getFunds().add(fund);
@@ -102,7 +121,6 @@ public class UserInterface {
 		else {
 
 			UserInterface ui = new UserInterface(ds, org);
-		
 			ui.start();
 		
 		}
