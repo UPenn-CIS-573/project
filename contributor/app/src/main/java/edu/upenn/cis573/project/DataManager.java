@@ -77,6 +77,12 @@ public class DataManager {
 
                 contributor.setDonations(donationList);
 
+                contributor.setTotalAmountOfDonations(
+                    donationList.stream()
+                            .map(Donation::getAmount)
+                            .reduce(0L, Long::sum)
+                );
+
                 return contributor;
 
             }

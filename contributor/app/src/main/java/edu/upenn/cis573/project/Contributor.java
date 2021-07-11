@@ -15,6 +15,7 @@ public class Contributor implements Serializable {
     private String creditCardExpiryYear;
     private String creditCardPostCode;
     private List<Donation> donations;
+    private long totalAmountOfDonations;
 
     public Contributor(String id, String name, String email, String creditCardNumber, String creditCardCVV, String creditCardExpiryMonth, String creditCardExpiryYear, String creditCardPostCode) {
         this.id = id;
@@ -66,5 +67,13 @@ public class Contributor implements Serializable {
 
     public void setDonations(List<Donation> donations) {
         this.donations = donations;
+    }
+
+    public void setTotalAmountOfDonations(long totalAmountOfDonations) {
+        this.totalAmountOfDonations = totalAmountOfDonations;
+    }
+
+    public long getTotalAmountOfDonations(){
+        return this.totalAmountOfDonations;
     }
 }

@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -147,6 +148,7 @@ public class MakeDonationActivity extends AppCompatActivity {
         if (success) {
             Toast.makeText(this, "Thank you for your donation!", Toast.LENGTH_LONG).show();
             contributor.getDonations().add(new Donation(selectedFund.getName(), contributor.getName(), Long.parseLong(amount), new Date().toString()));
+            contributor.setTotalAmountOfDonations(contributor.getTotalAmountOfDonations() + Long.parseLong(amount));
 
             new AsyncTask<String, String, String>() {
 
