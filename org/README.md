@@ -1,4 +1,1 @@
 # cis573-project-org
-
-## Changes Made
-* Task 1.8: To complete this task, the project utilizes Android's built-in class called `SimpleDateFormat` to parse the original format and to convert it into human-readable format. In detail, a new class called `DateParser` is created in the Contributor app in order to handle the conversion. The class has two new parameters, `oldDateFormat` (the date format originallly used in this project: `yyyy-MM-dd T HH:mm:ss Z`) and `newDateFormat` (the format is `MM/dd/yyyy`). And the class has a method `convertDateToNewFormat` that parses the date time in original format and converts to the new date format. The method throws `ParseException` if the parameter passed is not in the old format.
