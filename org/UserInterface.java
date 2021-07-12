@@ -47,8 +47,10 @@ public class UserInterface {
 			
 			if (option == 0) {
 				createFund(); 
-			}
-			else if (option != -1){
+			} else if (option < 0) {
+				System.out.println("Please enter a valid fund number.");
+				continue;
+			} else if (option > 0){
 				displayFund(option);
 			}
 		}			
@@ -68,6 +70,11 @@ public class UserInterface {
 		
 		try {
 			target = Long.parseLong(in.nextLine());
+			
+			if (target < 0) {
+				System.out.print("Fund target cannot be less than 0. Please enter a valid fund target.");
+				return;
+			}
 		} catch (Exception e) {
 			System.out.print("Please enter a valid fund target.");
 			return;
