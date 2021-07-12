@@ -60,7 +60,7 @@ public class DataManager {
 						JSONObject donation = (JSONObject) it2.next();
 						String contributorId = (String)donation.get("contributor");
 						String contributorName = this.getContributorName(contributorId);
-						long amount = Long.parseLong((String)donation.get("amount"));
+						long amount = (Long)donation.get("amount");
 						String date = (String)donation.get("date");
 						donationList.add(new Donation(fundId, contributorName, amount, date));
 					}

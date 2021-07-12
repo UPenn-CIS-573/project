@@ -97,12 +97,16 @@ public class UserInterface {
 		System.out.println("Description: " + fund.getDescription());
 		System.out.println("Target: $" + fund.getTarget());
 		
+		Long sum = Long.valueOf(0);
 		List<Donation> donations = fund.getDonations();
 		System.out.println("Number of donations: " + donations.size());
 		for (Donation donation : donations) {
+			sum += donation.getAmount();
 			System.out.println("* " + donation.getContributorName() + ": $" + donation.getAmount() + " on " + donation.getDate());
 		}
-	
+
+		float percentage = 100*sum/fund.getTarget();
+		System.out.println("Target: $" + fund.getTarget() + "("  + String.format("%.0f%%", percentage) + " of the target)");
 		
 		System.out.println("Press the Enter key to go back to the listing of funds");
 		in.nextLine();
@@ -118,7 +122,7 @@ public class UserInterface {
 		
 		String login = args[0];
 		String password = args[1];
-		
+
 		
 		Organization org = ds.attemptLogin(login, password);
 		

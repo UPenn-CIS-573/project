@@ -1,7 +1,9 @@
 package edu.upenn.cis573.project;
 
+import android.icu.text.SimpleDateFormat;
 import android.util.Log;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -57,15 +59,29 @@ public class DataManager {
                     JSONObject jsonDonation = donations.getJSONObject(i);
 
                     String fund = getFundName((String)jsonDonation.get("fund"));
-                    String date = (String)jsonDonation.get("date");
+
+                    DateParser dateParserObj = new DateParser(
+                            "yyyy-MM-dd'T'HH:mm:ss",
+                            "MM/dd/yyyy"
+                    );
+                    String dateInNewFormat = dateParserObj.convertDateToNewFormat(
+                            (String) jsonDonation.get("date")
+                    );
+
                     long amount = (Integer)jsonDonation.get("amount");
 
-                    Donation donation = new Donation(fund, name, amount, date);
+                    Donation donation = new Donation(fund, name, amount, dateInNewFormat);
                     donationList.add(donation);
 
                 }
 
                 contributor.setDonations(donationList);
+
+                contributor.setTotalAmountOfDonations(
+                    donationList.stream()
+                            .map(Donation::getAmount)
+                            .reduce(0L, Long::sum)
+                );
 
                 return contributor;
 
@@ -96,8 +112,7 @@ public class DataManager {
             String status = (String)json.get("status");
 
             if (status.equals("success")) {
-                String name = (String)json.get("data");
-                return name;
+                return (String)json.get("data");
             }
             else return "Unknown Fund";
 
