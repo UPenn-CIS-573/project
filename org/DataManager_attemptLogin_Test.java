@@ -125,8 +125,8 @@ public class DataManager_attemptLogin_Test {
 					currentExpectedDonation = currentExpectedDonations.get(donationIndex);
 
 					assertEquals(currentExpectedFund.get("_id"), currentActualDonation.getFundId());
-					// currentExpectedContributorName = getContributorNameMock(currentExpectedDonation.get("contributor"));
-					//assertEquals(currentExpectedContributorName, currentActualDonation.getContributorName());
+					currentExpectedContributorName = getContributorNameMock((String)currentExpectedDonation.get("contributor"));
+					assertEquals(currentExpectedContributorName, currentActualDonation.getContributorName());
 					assertEquals(currentExpectedDonation.get("amount"), currentActualDonation.getAmount());
 					assertEquals(currentExpectedDonation.get("date"), currentActualDonation.getDate());
 				}	
