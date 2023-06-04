@@ -1,3 +1,11 @@
 */package-lock.json
 */node_modules
 */.DS_Store
+*.class
+mongo_db/
+
+.DS_Store
+.idea/
+.vscode/
+org/pom.xml
+org/target/*
