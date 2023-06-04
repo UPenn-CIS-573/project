@@ -76,7 +76,6 @@ public class DataManager_attemptLogin_Test {
 				data.put("funds", funds);
 				response.put("data", data);
 				
-				// return "{\"status\":\"success\",\"data\":{\"_id\":\"12345\",\"name\":\"testOrganization\",\"description\":\"this is a test orgranization\",\"funds\":100,\"org\":\"5678\",\"donations\":[],\"__v\":0}}";
 				return response.toJSONString();
 			}
 			
@@ -103,6 +102,8 @@ public class DataManager_attemptLogin_Test {
 		JSONObject currentExpectedDonation;
 		String currentExpectedContributorName;
 
+		// Check that each associated fund is equal. 
+		// Note that this requires strict ordering
 		for(int fundIndex = 0; fundIndex < expectedFunds.size(); fundIndex ++) {
 			currentActualFund = testFunds.get(fundIndex);
 			currentExpectedFund = expectedFunds.get(fundIndex);
@@ -119,7 +120,7 @@ public class DataManager_attemptLogin_Test {
 			currentExpectedDonations = (List<JSONObject>)currentExpectedFund.get("donations"); 
 			
 			assertEquals(currentExpectedDonations.size(), currentActualDonations.size());
-
+				// Check that each associated donation is equal. 
 				for (int donationIndex = 0; donationIndex < currentActualDonations.size(); donationIndex ++){
 					currentActualDonation = currentActualFund.getDonations().get(donationIndex);
 					currentExpectedDonation = currentExpectedDonations.get(donationIndex);
