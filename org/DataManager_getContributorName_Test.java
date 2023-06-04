@@ -5,7 +5,7 @@ import java.util.Map;
 import org.json.simple.JSONObject;
 import org.junit.Test;
 
-public class DataManager_getContributor_Test {
+public class DataManager_getContributorName_Test {
 	
     @Test 
     public void testSuccessfullId(){
