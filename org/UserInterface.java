@@ -78,7 +78,7 @@ public class UserInterface {
 			totalAmount += donation.getAmount();
 			System.out.println("* " + donation.getContributorName() + ": $" + donation.getAmount() + " on " + donation.getDate());
 		}
-		double percent = ((double) totalAmount / fund.getTarget()) * 100;
+		int percent = (int) (((double) totalAmount / fund.getTarget()) * 100);
 		System.out.println("Total donation amount: $" + totalAmount + " (" + percent + "% of target)");
 	
 		
