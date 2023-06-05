@@ -79,7 +79,8 @@ public class UserInterface {
 			System.out.println("* " + donation.getContributorName() + ": $" + donation.getAmount() + " on " + donation.getDate());
 		}
 		double percent = ((double) totalAmount / fund.getTarget()) * 100;
-		System.out.println("Total donation amount: $" + totalAmount + " (" + (int) Math.floor(percent) + "% of target)");
+		percent = (double) Math.round(percent * 100) / 100;
+		System.out.println("Total donation amount: $" + totalAmount + " (" + percent + "% of target)");
 	
 		
 		System.out.println("Press the Enter key to go back to the listing of funds");
