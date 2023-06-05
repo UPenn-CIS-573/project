@@ -70,12 +70,16 @@ public class UserInterface {
 		System.out.println("Name: " + fund.getName());
 		System.out.println("Description: " + fund.getDescription());
 		System.out.println("Target: $" + fund.getTarget());
-		
+
+		long totalAmount = 0;
 		List<Donation> donations = fund.getDonations();
 		System.out.println("Number of donations: " + donations.size());
 		for (Donation donation : donations) {
+			totalAmount += donation.getAmount();
 			System.out.println("* " + donation.getContributorName() + ": $" + donation.getAmount() + " on " + donation.getDate());
 		}
+		double percent = ((double) totalAmount / fund.getTarget()) * 100;
+		System.out.println("Total donation amount: $" + totalAmount + " (" + percent + "% of target)");
 	
 		
 		System.out.println("Press the Enter key to go back to the listing of funds");
